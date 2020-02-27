@@ -11,8 +11,6 @@
 #include "LTC2986-1_support_functions.h"
 #include "LTC2986-1_table_coeffs.h"
 
-//#define CHIP_SELECT 10//CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
-
 uint8_t CHIP_SELECT = 10; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
 // Function prototypes
 void configure_channels();
@@ -24,12 +22,12 @@ void setup()
   quikeval_I2C_init();          // Configure the EEPROM I2C port for 100kHz
   quikeval_SPI_init();          // Configure the spi port for 4MHz SCK
   quikeval_SPI_connect();       // Connect SPI to main data port
-  pinMode(CHIP_SELECT, OUTPUT); // Configure chip select pin on Linduino
+  pinMode(CHIP_SELECT, OUTPUT); // Configure chip select pin on LINDUINO/ARDUINO UNO
 
   Serial.begin(115200); // Initialize the serial port to the PC
 
   print_title();
-//Uncomment discover_dem_board if using Linduino DC2608
+  // Uncomment discover_dem_board() if using Linduino DC2608 bpard
   // Serial.println("Discovering board LTC2986-1");
   // char demo_name[] = "DC2508"; // Demo Board Name stored in QuikEval EEPROM
   // discover_demo_board(demo_name);
@@ -75,6 +73,6 @@ void loop()
 {
   //Sample the LTC 2986-1 continuously
   measure_channel(CHIP_SELECT, 1, TEMPERATURE); // Ch 1: Type E Thermocouple
-  //measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
+  measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
   delay(200);
 }
