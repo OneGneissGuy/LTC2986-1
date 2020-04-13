@@ -12,6 +12,10 @@
 #include "LTC2986-1_table_coeffs.h"
 
 uint8_t CHIP_SELECT = 10; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
+// uint8_t MOSI = 11; //MOSI is DIGITAL PIN 11 on LINDUINO/ARDUINO UNO
+// uint8_t MISO = 12; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
+// uint8_t SCK = 13; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
+
 // Function prototypes
 void configure_channels();
 void configure_global_parameters();
