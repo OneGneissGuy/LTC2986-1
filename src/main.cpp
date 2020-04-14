@@ -6,7 +6,9 @@
 #include "LTC2986-1_support_functions.h"
 #include "LTC2986-1_table_coeffs.h"
 
-uint8_t CHIP_SELECT = 10; 
+uint8_t CHIP_SELECT = 10;
+long previousMillis = 0; // will store last time LED was updated
+long elapsedMillis = 0;
 
 // Function prototypes
 void configure_channels();
@@ -58,8 +60,16 @@ void configure_global_parameters()
 
 void loop()
 {
+
+  unsigned long currentMillis = millis();
+  elapsedMillis = currentMillis - previousMillis;
+  previousMillis = currentMillis;
+
   //Sample the LTC 2986-1 continuously
   measure_channel(CHIP_SELECT, 1, TEMPERATURE); // Ch 1: Type E Thermocouple
-  measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
-  delay(200);
+  //measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
+                                                //delay(200);
+  Serial.print("Time elapsed for measurement (ms) = ");
+  Serial.println(elapsedMillis);
+  
 }
