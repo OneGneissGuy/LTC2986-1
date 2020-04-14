@@ -49,7 +49,7 @@ void configure_channels()
 
   // ----- Channel 1: Assign Type E Thermocouple -----
   channel_assignment_data =
-      SENSOR_TYPE__TYPE_E_THERMOCOUPLE |
+      SENSOR_TYPE__TYPE_K_THERMOCOUPLE |
       TC_COLD_JUNCTION_CH__2 |
       TC_SINGLE_ENDED |
       TC_OPEN_CKT_DETECT__NO |
