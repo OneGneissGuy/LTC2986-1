@@ -66,8 +66,8 @@ void loop()
   previousMillis = currentMillis;
 
   //Sample the LTC 2986-1 continuously
-  measure_channel(CHIP_SELECT, 1, TEMPERATURE); // Ch 1: Type E Thermocouple
-  //measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
+  measure_channel(CHIP_SELECT, 1, TEMPERATURE); // Ch 1: Type K Thermocouple
+  measure_channel(CHIP_SELECT, 2, TEMPERATURE); // Ch 2: Off-Chip Diode
                                                 //delay(200);
   Serial.print("Time elapsed for measurement (ms) = ");
   Serial.println(elapsedMillis);
