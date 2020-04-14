@@ -1,20 +1,12 @@
 #include <Arduino.h>
 #include <stdint.h>
-#include "Linduino.h"
 #include "LT_SPI.h"
 #include <SPI.h>
-#include "UserInterface.h"
-#include "LT_I2C.h"
-#include "QuikEval_EEPROM.h"
-
 #include "LTC2986-1_configuration_constants.h"
 #include "LTC2986-1_support_functions.h"
 #include "LTC2986-1_table_coeffs.h"
 
-uint8_t CHIP_SELECT = 10; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
-// uint8_t MOSI = 11; //MOSI is DIGITAL PIN 11 on LINDUINO/ARDUINO UNO
-// uint8_t MISO = 12; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
-// uint8_t SCK = 13; //CS is DIGITAL PIN 10 on LINDUINO/ARDUINO UNO
+uint8_t CHIP_SELECT = 10; 
 
 // Function prototypes
 void configure_channels();
@@ -22,19 +14,10 @@ void configure_global_parameters();
 
 void setup()
 {
-  // put your setup code here, to run once:
-  quikeval_I2C_init();          // Configure the EEPROM I2C port for 100kHz
-  quikeval_SPI_init();          // Configure the spi port for 4MHz SCK
-  quikeval_SPI_connect();       // Connect SPI to main data port
-  pinMode(CHIP_SELECT, OUTPUT); // Configure chip select pin on LINDUINO/ARDUINO UNO
+  spi_enable(SPI_CLOCK_DIV16);
 
   Serial.begin(115200); // Initialize the serial port to the PC
 
-  print_title();
-  // Uncomment discover_dem_board() if using Linduino DC2608 bpard
-  // Serial.println("Discovering board LTC2986-1");
-  // char demo_name[] = "DC2508"; // Demo Board Name stored in QuikEval EEPROM
-  // discover_demo_board(demo_name);
   Serial.println("configuring LTC2986-1");
   Serial.println("configuring channels");
   configure_channels();
